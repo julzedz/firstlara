@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-  <title>Product</title>
-</head>
-<body>
-  <h1>Product11</h1>
-  <form action={{ route("formsubmitted") }} method="post">
+@extends('components.layouts.main')
+
+    @section('header')
+    <h2>Product11</h2>
+@endsection
+
+@section('content')
+    <form action={{ route("formsubmitted") }} method="post">
     @csrf
     <label for="fullname">Full Name:</label>
     <input class="" type="text" id="fullname" name="fullname" placeholder="Name" required>
@@ -18,5 +15,7 @@
     <br>
     <button type="submit">Submit</button>
   </form>
+  @endsection
+
 </body>
 </html>

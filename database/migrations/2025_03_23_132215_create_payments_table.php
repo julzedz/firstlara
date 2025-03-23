@@ -16,6 +16,7 @@ return new class extends Migration
             $table->dateTime('payment_date');
             $table->string('payment_method', 100);
             $table->decimal('amount',10,2);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

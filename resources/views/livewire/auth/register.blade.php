@@ -13,7 +13,7 @@
             required
             autofocus
             autocomplete="name"
-            :placeholder="__('Full name')"
+            :placeholder="__('Username')"
         />
 
         <!-- Email Address -->

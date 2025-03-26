@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Register;
+use App\Models\User;
 use Livewire\Livewire;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
@@ -17,6 +18,8 @@ test('new users can register', function () {
         ->set('email', 'test@example.com')
         ->set('password', 'password')
         ->set('password_confirmation', 'password')
+        ->set('address', '123 Main St')
+        ->set('phone_number', '555-123-4567')
         ->call('register');
 
     $response
@@ -24,4 +27,8 @@ test('new users can register', function () {
         ->assertRedirect(route('dashboard', absolute: false));
 
     $this->assertAuthenticated();
+    
+    $user = User::where('email', 'test@example.com')->first();
+    expect($user->address)->toBe('123 Main St');
+    expect($user->phone_number)->toBe('555-123-4567');
 });

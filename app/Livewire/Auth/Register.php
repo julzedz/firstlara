@@ -17,6 +17,8 @@ class Register extends Component
 
     public string $email = '';
 
+    public string $address = '';
+    public string $phone_number = '';
     public string $password = '';
 
     public string $password_confirmation = '';
@@ -28,16 +30,30 @@ class Register extends Component
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:20'],
+            'password' => ['required', 'string', 'confirmed', 'min:8'],
         ]);
 
-        $validated['password'] = Hash::make($validated['password']);
-
-        event(new Registered(($user = User::create($validated))));
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'address' => $validated['address'],
+            'phone_number' => $validated['phone_number'],
+            'password' => Hash::make($validated['password']),
+        ]);
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $this->redirect(route('dashboard', absolute: false));
+    }
+
+    /**
+     * Render the component.
+     */
+    public function render()
+    {
+        return view('livewire.auth.register');
     }
 }

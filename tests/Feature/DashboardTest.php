@@ -9,7 +9,14 @@ test('guests are redirected to the login page', function () {
 });
 
 test('authenticated users can visit the dashboard', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
+
+    $this->actingAs($user);
 
     $this->get('/dashboard')->assertStatus(200);
 });

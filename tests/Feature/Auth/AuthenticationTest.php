@@ -13,7 +13,12 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
 
     $response = Livewire::test(Login::class)
         ->set('email', $user->email)
@@ -28,7 +33,12 @@ test('users can authenticate using the login screen', function () {
 });
 
 test('users can not authenticate with invalid password', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
 
     $this->post('/login', [
         'email' => $user->email,
@@ -39,7 +49,12 @@ test('users can not authenticate with invalid password', function () {
 });
 
 test('users can logout', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
 
     $response = $this->actingAs($user)->post('/logout');
 

@@ -9,6 +9,10 @@ uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('password can be updated', function () {
     $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
         'password' => Hash::make('password'),
     ]);
 
@@ -27,6 +31,10 @@ test('password can be updated', function () {
 
 test('correct password must be provided to update password', function () {
     $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
         'password' => Hash::make('password'),
     ]);
 

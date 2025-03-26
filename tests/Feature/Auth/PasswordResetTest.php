@@ -18,7 +18,12 @@ test('reset password link screen can be rendered', function () {
 test('reset password link can be requested', function () {
     Notification::fake();
 
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
 
     Livewire::test(ForgotPassword::class)
         ->set('email', $user->email)
@@ -30,7 +35,12 @@ test('reset password link can be requested', function () {
 test('reset password screen can be rendered', function () {
     Notification::fake();
 
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
 
     Livewire::test(ForgotPassword::class)
         ->set('email', $user->email)
@@ -48,7 +58,12 @@ test('reset password screen can be rendered', function () {
 test('password can be reset with valid token', function () {
     Notification::fake();
 
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'address' => '123 Main St',
+        'phone_number' => '555-123-4567',
+    ]);
 
     Livewire::test(ForgotPassword::class)
         ->set('email', $user->email)

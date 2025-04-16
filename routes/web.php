@@ -5,6 +5,9 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Livewire\Counter;
+
+Route::get('/counter', Counter::class);
 
 Route::get('/', function () {
     return view('welcome');

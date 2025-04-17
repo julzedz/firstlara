@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Landingpage;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -8,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Livewire\Counter;
 
 Route::get('/counter', Counter::class);
+
+Route::get('/landingpage', Landingpage::class)->name('landingpage');
 
 Route::get('/', function () {
     return view('welcome');
